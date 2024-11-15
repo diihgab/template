@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFOCILITIES - Excelencias em Serviços</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        h1 {
+            margin-bottom: 0.5rem;
+        }
+        nav {
+            background-color: #004080;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            margin: 0.5rem;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #005599;
+            transform: scale(1.05);
+        }
+        .content {
+            background-color: #fff;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            margin-right: 0.5em;
+        }
+        footer {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background-color: #004080;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .contact-button:hover {
+            background-color: #005599;
+        }
+        .contact-button .icon {
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-item p {
+            margin: 0;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                z-index: 1000;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                left: -300px;
+                width: 250px;
+                height: 100%;
+                background-color: #004080;
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+            nav.active {
+                left: 0;
+            }
+            nav ul {
+                flex-direction: column;
+                padding-top: 60px;
+            }
+            nav ul li {
+                margin: 0;
+            }
+            nav ul li a {
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .container {
+                padding-top: 60px;
+            }
+        }
+
+        /* New animation styles */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .button-animation {
+            transition: all 0.3s ease;
+        }
+
+        .button-animation:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .text-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .text-animation.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>INFOCILITIES</h1>
+        <p>Excelencias em Serviços</p>
+    </header>
+
+    <button class="menu-toggle button-animation" aria-label="Toggle menu">☰</button>
+
+    <nav>
+        <ul>
+            <li><a href="#sobre" class="active button-animation">Sobre Nós</a></li>
+            <li><a href="#servicos" class="button-animation">Serviços</a></li>
+            <li><a href="#profissionais" class="button-animation">Profissionais</a></li>
+            <li><a href="#ti" class="button-animation">Expertise em TI</a></li>
+            <li><a href="#pilares" class="button-animation">Nossos Pilares</a></li>
+            <li><a href="#carreiras" class="button-animation">Carreiras</a></li>
+            <li><a href="#contato" class="button-animation">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="sobre" class="content">
+            <h2 class="text-animation">Quem Somos</h2>
+            <p class="text-animation">A INFOCILITIES é uma empresa líder em terceirização de serviços, com mais de uma década de experiência no mercado. Nossa expertise abrange uma ampla gama de setores, incluindo:</p>
+            <ul class="text-animation">
+                <li>Locação de mão de obra especializada para serviços de manutenções preventivas e corretivas</li>
+                <li>Gestão completa de manutenção predial e industrial</li>
+                <li>Serviços abrangentes de conservação, limpeza, refrigeração, elétrica, jardinagem, recepção e portaria</li>
+                <li>Soluções tecnológicas avançadas e consultoria em TI</li>
+            </ul>
+            <p class="text-animation">Nossa missão é compreender profundamente as necessidades de cada cliente, oferecendo soluções personalizadas que otimizam processos, reduzem custos e aumentam a eficiência operacional.</p>
+        </section>
+
+        <section id="servicos" class="content hidden">
+            <h2 class="text-animation">Nossos Serviços</h2>
+            <p class="text-animation">A INFOCILITIES oferece uma gama completa de serviços para atender às diversas necessidades de nossos clientes:</p>
+            <div class="grid text-animation">
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a1 1 0 0 1 .707.293l.707.707l1.414-1.414l-2.828-2.828a1 1 0 0 0-1.414 0L8.172 2.586l1.414 1.414l.707-.707A1 1 0 0 1 12 3zm0 18a1 1 0 0 1-.707-.293l-.707-.707l-1.414 1.414l2.828 2.828a1 1 0 0 0 1.414 0l2.828-2.828l-1.414-1.414l-.707.707A1 1 0 0 1 12 21zm7-7a1 1 0 0 1-.293-.707l-.707-.707l1.414-1.414l2.828 2.828a1 1 0 0 0 0 1.414l-2.828 2.828l-1.414-1.414l.707-.707A1 1 0 0 1 19 14zm-14 0a1 1 0 0 1 .293.707l.707.707l-1.414 1.414l-2.828-2.828a1 1 0 0 0 0-1.414l2.828-2.828l1.414 1.414l-.707.707A1 1 0 0 1 5 14zm9-5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V9zm0 6a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2z"/></svg>Manutenção elétrica completa</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z"/></svg>Testes de telefonia móvel</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2a2 2 0 0 0 2-2V5h2V3H8zm8 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2a2 2 0 0 1-2-2V5h-2V3h2z"/></svg>Cabeamento estruturado</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a9 9 0 0 0-9 9a9 9 0 0 0 9 9a9 9 0 0 0 9-9a9 9 0 0 0-9-9zm0 16a7 7 0 0 1-7-7a7 7 0 0 1 7-7a7 7 0 0 1 7 7a7 7 0 0 1-7 7zm1-11h-2v3H8v2h3v3h2v-3h3v-2h-3V8z"/></svg>Automação predial</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M19 5v2h-4V5h4M9 5v6H5V5h4m10 8v6h-4v-6h4M9 17v2H5v-2h4M21 3h-8v6h8V3zM11 3H3v10h8V3zm10 8h-8v10h8V11zm-10 4H3v6h8v-6z"/></svg>Manutenção predial</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16a3 3 0 0 1-3-3c0-1.12.61-2.1 1.5-2.61l9.71-5.62l-5.53 9.58c-.5.98-1.51 1.65-2.68 1.65zm0-13c1.81 0 3.5.5 4.97 1.32l-2.1 1.21C14 5.19 13 5 12 5a8 8 0 0 0-8 8c0 2.21.89 4.21 2.34 5.65h.01c.39.39.39 1.02 0 1.41c-.39.39-1.03.39-1.42.01A9.969 9.969 0 0 1 2 13A10 10 0 0 1 12 3zm10 10c0 2.76-1.12 5.26-2.93 7.07c-.39.38-1.02.38-1.41-.01a.996.996 0 0 1 0-1.41A7.95 7.95 0 0 0 20 13c0-1-.19-2-.54-2.9L20.67 8C21.5 9.5 22 11.18 22 13z"/></svg>Sistemas de refrigeração</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M19 14V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-9 1c-1.66 0-3-1.34-3-3s1.34-3 3-3s3 1.34 3 3s-1.34 3-3 3zm13-6v11c0 1.1-.9 2-2 2H4v-2h17V9h2z"/></svg>Limpeza e conservação</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22a9 9 0 0 1-9-9a9 9 0 0 1 9-9c.74 0 1.47.1 2.17.29c.06.16.13.3.22.44c.11.2.24.38.37.55a5.03 5.03 0 0 0-1.5 1.34A4.37 4.37 0 0 0 12 8a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4h2a6 6 0 0 1-6 6m10-3.17l-2.12-2.12c.73-1.77.35-3.88-1.17-5.41c-1.53-1.53-3.65-1.9-5.41-1.17L11.17 8l-2-2L12 3.17c2.72-1.87 6.44-1.6 8.83.83c2.41 2.41 2.69 6.11.83 8.83L20 14.83l-1.17 1.17l-2.12-2.12l-1.42 1.42l2.12 2.12l-1.41 1.41z"/></svg>Jardinagem</div>
+            </div>
+        </section>
+
+        <section id="profissionais" class="content hidden">
+            <h2 class="text-animation">Nossos Profissionais</h2>
+            <p class="text-animation">A INFOCILITIES conta com uma equipe diversificada de profissionais altamente qualificados e treinados, prontos para atender às mais variadas demandas:</p>
+            <div class="grid text-animation">
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>Encarregados</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>Artífices</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>Pintores</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>Eletricistas</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>Mecânicos de Refrigeração</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>Técnicos de Limpeza</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>Agentes de Portaria</div>
+                <div><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>Recepcionistas</div>
+            </div>
+        </section>
+
+        <section id="ti" class="content hidden">
+            <h2 class="text-animation">Expertise em TI</h2>
+            <p class="text-animation">A INFOCILITIES é líder em soluções de Tecnologia da Informação, oferecendo serviços de ponta para empresas de todos os portes:</p>
+            <ul class="text-animation">
+                <li>Mais de 25 anos de experiência em TI</li>
+                <li>Especialistas em outsourcing de TI</li>
+                <li>Soluções de downsizing para redução de custos</li>
+                <li>Expertise em virtualização e cloud computing</li>
+                <li>Foco em gestão utilizando frameworks atuais: ITIL v4, COBIT 2019, e metodologias ágeis</li>
+                <li>Serviços abrangentes:
+                    <ul>
+                        <li>Service Desk com suporte 24/7</li>
+                        <li>Suporte OnSite personalizado</li>
+                        <li>Gerenciamento de redes e segurança</li>
+                        <li>Administração de bancos de dados</li>
+                        <li>Projeto e implementação de Datacenters</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section id="pilares" class="content hidden">
+            <h2 class="text-animation">Nossos Pilares</h2>
+            <p class="text-animation">A INFOCILITIES se destaca no mercado graças aos seus sólidos pilares organizacionais:</p>
+            <ul class="text-animation">
+                <li><strong>Foco no resultado:</strong> Comprometimento em atingir e superar as metas estabelecidas.</li>
+                <li><strong>Garantia na qualidade dos serviços:</strong> Implementação de rigorosos padrões de qualidade em todos os processos.</li>
+                <li><strong>Busca do melhor custo-benefício:</strong> Otimização de recursos e processos para oferecer soluções eficientes.</li>
+                <li><strong>Transparência com os clientes:</strong> Comunicação clara e honesta em todas as etapas do projeto.</li>
+                <li><strong>Mão de obra qualificada e treinada:</strong> Investimento contínuo em capacitação e desenvolvimento profissional.</li>
+                <li><strong>Inovação constante:</strong> Busca incessante por novas tecnologias e metodologias.</li>
+                <li><strong>Responsabilidade socioambiental:</strong> Compromisso com práticas sustentáveis e ações que beneficiam a comunidade.</li>
+            </ul>
+        </section>
+
+        <section id="carreiras" class="content hidden">
+            <h2 class="text-animation">Carreiras</h2>
+            <p class="text-animation">A INFOCILITIES está sempre em busca de talentos para integrar nossa equipe. Se você é um profissional qualificado e deseja fazer parte de uma empresa inovadora e em constante crescimento, envie seu currículo para nós.</p>
+            <p class="text-animation">Para se candidatar a uma oportunidade, por favor, envie seu currículo para o seguinte endereço de e-mail:</p>
+            <p class="text-animation">
+                <a href="mailto:curriculos@infocilities.com.br" class="contact-button button-animation">
+                    <svg class="icon" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5l-8-5V6l8 5l8-5v2z"/></svg>
+                    Enviar Currículo
+                </a>
+            </p>
+            <p class="text-animation">Certifique-se de incluir no assunto do e-mail a área de interesse ou vaga específica, se houver.</p>
+        </section>
+
+        <section id="contato" class="content hidden">
+            <h2 class="text-animation">Entre em Contato</h2>
+            <p class="text-animation">Estamos à disposição para atender às suas necessidades e fornecer soluções personalizadas para o seu negócio. Entre em contato conosco:</p>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <a href="https://goo.gl/maps/YourGoogleMapsLink" target="_blank" rel="noopener noreferrer" class="contact-button button-animation">
+                        <svg class="icon" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 11.5A2.5 2.5 0 0 1 9.5 9 2.5 2.5 0 0 1 12 6.5 2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z"/></svg>
+                        Endereço
+                    </a>
+                    <p class="text-animation">Rua Olinto Cabral, 30 – Belvedere, Manaus – AM, CEP: 69044-260</p>
+                </div>
+                <div class="contact-item">
+                    <a href="tel:+559221268866" class="contact-button button-animation">
+                        <svg class="icon" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        Telefone Fixo
+                    </a>
+                    <p class="text-animation">(92) 2126-8866</p>
+                </div>
+                <div class="contact-item">
+                    <a href="tel:+5592991268852" class="contact-button button-animation">
+                        <svg class="icon" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M17 19h2v-8h-2v8zm0-12v2h2V7h-2zM2 2v20h14V2H2zm12 18H4V4h10v16z"/></svg>
+                        Celular
+                    </a>
+                    <p class="text-animation">(92) 99126-8852</p>
+                </div>
+                <div class="contact-item">
+                    <a href="mailto:comercial@infocilities.com.br" class="contact-button button-animation">
+                        <svg class="icon" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5l-8-5V6l8 5l8-5v2z"/></svg>
+                        E-mail Comercial
+                    </a>
+                    <p class="text-animation">comercial@infocilities.com.br</p>
+                </div>
+                <div class="contact-item">
+                    <a href="https://www.infocilities.com.br" target="_blank" rel="noopener noreferrer" class="contact-button button-animation">
+                        <svg class="icon" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M16.36 14c.08-.66.14-1.32.14-2c0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2c0-.68.06-1.35.16-2h4.68c.09.65.16 1.32.16 2c0 .68-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.923 7.923 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8.008 8.008 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2c0 .68.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.65 15.65 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg>
+                        Website
+                    </a>
+                    <p class="text-animation">www.infocilities.com.br</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 INFOCILITIES. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.content');
+            const navLinks = document.querySelectorAll('nav a');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            function showSection(sectionId) {
+                sections.forEach(section => {
+                    if (section.id === sectionId) {
+                        section.classList.remove('hidden');
+                        animateContent(section);
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href').slice(1) === sectionId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            function animateContent(section) {
+                const elements = section.querySelectorAll('.text-animation');
+                elements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('show');
+                    }, index * 100);
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('href').slice(1);
+                    showSection(sectionId);
+                    if (window.innerWidth <= 768) {
+                        nav.classList.remove('active');
+                    }
+                });
+            });
+
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+
+            // Show the initial section (About Us)
+            showSection('sobre');
+        });
+    </script>
+</body>
+</html>
